@@ -41,6 +41,18 @@ open class MessageView: BaseView, AccessibleMessage {
      MARK: - IB outlets
      */
     
+    /// An optional topContraint.
+    @IBOutlet open var topConstraint: NSLayoutConstraint?
+
+    /// An optional bottomConstraint.
+    @IBOutlet open var bottomConstraint: NSLayoutConstraint?
+
+    /// An optional leadingConstraint.
+    @IBOutlet open var leadingConstraint: NSLayoutConstraint?
+
+    /// An optional trailingConstraint.
+    @IBOutlet open var trailingConstraint: NSLayoutConstraint?
+    
     /// An optional title label.
     @IBOutlet open var titleLabel: UILabel?
     
@@ -52,6 +64,45 @@ open class MessageView: BaseView, AccessibleMessage {
     
     /// An optional icon label (e.g. for emoji character, icon font, etc.).
     @IBOutlet open var iconLabel: UILabel?
+
+    /// An optional bodyLabel top Constraint.
+    @IBOutlet open var bodyTopConstraint: NSLayoutConstraint?
+
+    /// An optional vertical margin.
+    open var verticalMargins: CGFloat? {
+        didSet {
+            guard let verticalMargins = verticalMargins else { return }
+            bottomConstraint?.constant = verticalMargins
+            topConstraint?.constant = verticalMargins
+        }
+    }
+
+    /// An optional vertical margin.
+    open var horizontalMargins: CGFloat? {
+        didSet {
+            guard let horizontalMargins = horizontalMargins else { return }
+            trailingConstraint?.constant = horizontalMargins
+            leadingConstraint?.constant = horizontalMargins
+        }
+    }
+
+    /// An optional margins inset.
+    open var margins: UIEdgeInsets? {
+        didSet {
+            guard let margins = margins else { return }
+            trailingConstraint?.constant = margins.right
+            leadingConstraint?.constant = margins.left
+            topConstraint?.constant = margins.top
+            bottomConstraint?.constant = margins.bottom
+        }
+    }
+
+    /// An optional spacing between title and message.
+    open var messagesSpacing: CGFloat? = 20 {
+        didSet {
+            updateViewSpacing()
+        }
+    }
     
     /// An optional button. This buttons' `.TouchUpInside` event will automatically
     /// invoke the optional `buttonTapHandler`, but its fine to add other target
@@ -119,6 +170,17 @@ open class MessageView: BaseView, AccessibleMessage {
         }
         getAccessibleSubviews(view: self.backgroundView)
         return elements
+    }
+
+    func updateViewSpacing() {
+        guard let messagesSpacing = messagesSpacing else { return }
+        if #available(iOS 9.0, *) {
+            if let stackView = self.viewWithTag(1111) as? UIStackView {
+                stackView.spacing = messagesSpacing
+            }
+        } else {
+            bodyTopConstraint?.constant = messagesSpacing
+        }
     }
 }
 

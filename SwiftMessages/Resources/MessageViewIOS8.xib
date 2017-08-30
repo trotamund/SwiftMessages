@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -100,9 +100,14 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="bodyLabel" destination="OV1-yz-3U3" id="mc8-61-Icn"/>
+                <outlet property="bodyTopConstraint" destination="43Q-Ya-7Wv" id="Ucf-xQ-f40"/>
+                <outlet property="bottomConstraint" destination="owe-dy-vX4" id="gJB-fC-bim"/>
                 <outlet property="iconImageView" destination="q3r-OQ-1bR" id="R3P-Gs-Mqa"/>
                 <outlet property="iconLabel" destination="hN0-co-Tho" id="Pkn-8u-E8X"/>
+                <outlet property="leadingConstraint" destination="cLy-WR-pFK" id="Kte-TZ-yCR"/>
                 <outlet property="titleLabel" destination="ahp-gB-92W" id="nkU-6v-kIf"/>
+                <outlet property="topConstraint" destination="hqV-tv-Dq3" id="KVu-er-CYO"/>
+                <outlet property="trailingConstraint" destination="N6z-c2-h8Y" id="b4g-EV-i5e"/>
             </connections>
             <point key="canvasLocation" x="360" y="352.5"/>
         </view>

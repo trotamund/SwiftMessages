@@ -83,11 +83,13 @@ class ViewController: UITableViewController {
 
         let info = MessageView.viewFromNib(layout: .MessageView)
         info.configureTheme(.info)
+        info.margins = UIEdgeInsets(top: 10, left: 13, bottom: 9, right: 13)
         info.button?.isHidden = true
         info.configureContent(title: "Info", body: "This is a very lengthy and informative info message that wraps across multiple lines and grows in height as needed.")
+        info.messagesSpacing = 40
         var infoConfig = SwiftMessages.defaultConfig
-        infoConfig.presentationStyle = .bottom
-        infoConfig.duration = .seconds(seconds: 0.25)
+        infoConfig.presentationStyle = .top
+        infoConfig.duration = .seconds(seconds: 5)
 
         let status = MessageView.viewFromNib(layout: .StatusLine)
         status.backgroundView.backgroundColor = UIColor.purple
